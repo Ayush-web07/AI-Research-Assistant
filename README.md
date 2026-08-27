@@ -1,113 +1,76 @@
-# 📚 AI Research Assistant
 
-A RAG-powered research assistant that lets you upload multiple PDFs, ask questions
-across all of them, and get grounded, cited answers — with source paragraphs
-highlighted so you can verify every claim.
 
-Built for the intermediate-GenAI-portfolio use case: multi-document semantic
-search, citation grounding, persistent chat history, and PDF export — all on
-100% free APIs, no credit card required.
+<table>
+<tr>
 
-## Features
+<td width="50%">
 
-- 📤 Upload multiple PDFs, indexed for cross-document search
-- 💬 Ask natural-language questions, get grounded answers
-- 🔍 Semantic search via FAISS + local Sentence Transformer embeddings (no rate limits, no cost)
-- 📎 Every answer shows the exact source paragraphs it was built from (filename, page, similarity score)
-- 📝 One-click document summarization
-- 💾 Chat history persisted per session in SQLite
-- 📄 Export the full Q&A conversation to a formatted PDF
-- ⚡ Fast generation via Groq's free-tier Llama models (Hugging Face Inference API and fully-offline Ollama as fallbacks)
+**AI-Research-Assistant**
 
-## Architecture
+An intelligent AI-powered research workspace built with Python, LLMs, RAG, and FAISS. The application helps users analyze documents, ask context-aware questions, perform AI-assisted research, compare documents, analyze images, generate quizzes and mind maps, translate content, and interact with AI using voice.
 
-```
-PDF Upload → pdfplumber (text extraction, page-aware)
-           → chunk_text() (800 chars, 150 overlap, sentence-safe)
-           → Sentence Transformers "all-MiniLM-L6-v2" (local embeddings)
-           → FAISS IndexFlatIP (cosine similarity search)
+<br>
 
-Question   → embed query → FAISS top-k retrieval
-           → build cited context block
-           → Groq / HF LLM → grounded answer with [Source N] citations
+### Technologies
 
-Everything → SQLite (chat_history, documents tables)
-```
+<p>
 
-## Setup
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
 
-### 1. Install dependencies
+<img src="https://img.shields.io/badge/LLM-Generative%20AI-8E44AD?style=for-the-badge">
 
-```bash
-pip install -r requirements.txt
-```
+<img src="https://img.shields.io/badge/RAG-Retrieval%20Augmented%20Generation-FF6F00?style=for-the-badge">
 
-### 2. Choose an LLM provider (no credit card needed for any of these)
+<img src="https://img.shields.io/badge/FAISS-Vector%20Search-00A67E?style=for-the-badge">
 
-Pick **one**:
+<img src="https://img.shields.io/badge/NLP-Natural%20Language%20Processing-3498DB?style=for-the-badge">
 
-- **Groq (recommended — much faster)**: sign up at https://console.groq.com/keys
-- **Hugging Face (fallback)**: sign up at https://huggingface.co/settings/tokens
-- **Ollama (fully offline, no API key at all)**: install from https://ollama.com/download,
-  then run `ollama pull llama3.1` and start it with `ollama serve` (or just open the app)
+<img src="https://img.shields.io/badge/Embeddings-Semantic%20Search-16A085?style=for-the-badge">
 
-The app auto-detects which one is available (in that order) — no config needed if
-you only set up one. To force a specific provider, set `LLM_PROVIDER=groq|hf|ollama`.
+<img src="https://img.shields.io/badge/PDF-Document%20Processing-E74C3C?style=for-the-badge">
 
-### 3. Set your API key (skip this step if you're only using Ollama)
+<img src="https://img.shields.io/badge/DOCX-Document%20Processing-2B579A?style=for-the-badge">
 
-```bash
-cp .env.example .env
-# edit .env and paste your key
-export GROQ_API_KEY=gsk_your_key_here      # or
-export HF_API_TOKEN=hf_your_token_here
-```
+<img src="https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge&logo=sqlite&logoColor=white">
 
-(On Windows PowerShell: `$env:GROQ_API_KEY="gsk_your_key_here"`)
+<img src="https://img.shields.io/badge/Git-GitHub-F05032?style=for-the-badge&logo=git&logoColor=white">
 
-If you're using Ollama, no key is needed — just make sure `ollama serve` is running
-before you launch the app.
+</p>
 
-### 4. Run the app
+<a href="https://github.com/Ayush-web07/AI-Research-Assistant">
 
-```bash
-streamlit run app.py
-```
+<img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white">
 
-The first run will download the embedding model (~90MB) — this requires
-internet access one time, then it runs fully offline for embeddings.
+</a>
 
-## Project structure
+</td>
 
-```
-ai-research-assistant/
-├── app.py              # Streamlit UI — upload, chat, history, export
-├── rag_engine.py        # PDF parsing, chunking, embeddings, FAISS index
-├── llm_client.py         # Groq / Hugging Face API wrapper + prompting
-├── database.py            # SQLite persistence (documents, chat history)
-├── export_utils.py         # Chat → PDF export (reportlab)
-├── requirements.txt
-├── .env.example
-└── data/                    # SQLite DB + FAISS indexes (created at runtime)
-```
+<td width="50%">
 
-## Notes for recruiters / interview talking points
+# 🚀 Main Features
 
-- **Chunking strategy**: sliding-window with overlap, breaking on whitespace
-  boundaries so citations aren't cut mid-sentence — a common failure mode in
-  naive RAG implementations.
-- **Grounding**: the system prompt forces the model to cite `[Source N]` and
-  explicitly say when the answer isn't in the retrieved context, reducing
-  hallucination.
-- **Cost/latency tradeoff**: embeddings run locally (free, no rate limit,
-  no latency from network calls per chunk); only the final generation step
-  calls an external API, minimizing API usage and cost.
-- **Extensibility**: swapping the embedding model, chunk size, or LLM
-  provider is a one-line change in `rag_engine.py` / `llm_client.py`.
+- 🤖 LLM-Powered AI Assistant
+- 🔎 RAG-Based Question Answering
+- 📚 AI Deep Research
+- 📄 PDF & DOCX Analysis
+- 🧠 Semantic Search
+- 🗂️ FAISS Vector Search
+- 📝 AI Quiz Generator
+- 🗺️ AI Mind Map Generator
+- 🔄 Document Comparison
+- 🖼️ AI Image Analysis
+- 🌐 Multi-Language Translation
+- 🎙️ Voice Interaction
+- 📑 Research Export
+- 💾 Research Data Management
+- ⚡ Intelligent Document Retrieval
+- 🔐 Secure API Key Management
 
-## Possible extensions
+</td>
 
-- Streaming responses (Groq supports SSE streaming)
-- Re-ranking retrieved chunks with a cross-encoder before generation
-- Multi-turn conversational memory (currently each question is independent)
-- Support for other file types (docx, txt, web pages)
+</tr>
+</table>
+
+Developed with ❤️ by **Ayush**
+
+If you like this project, don't forget to ⭐ **Star this Repository**.
