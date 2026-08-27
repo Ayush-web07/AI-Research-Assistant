@@ -36,7 +36,6 @@ An intelligent AI-powered research workspace built with Python, LLMs, RAG, and F
 </p>
 
 <a href="https://github.com/Ayush-web07">
-
 <img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white">
 
 </a>
