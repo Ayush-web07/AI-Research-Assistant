@@ -1,0 +1,33 @@
+# Environment
+.env
+.env.*
+
+# Keep example environment file
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Database
+*.db
+*.sqlite3
+
+# Generated files
+exports/
+*.log
+
+# RAG / FAISS indexes
+data/indexes/
+
+# OS files
+.DS_Store
+Thumbs.db
+data/uploads/
